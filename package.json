@@ -1,0 +1,42 @@
+{
+  "name": "branch-convention-check",
+  "version": "1.0.0",
+  "description": "Action that checks wether newly created branches follow a naming convention",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint --fix .",
+    "build": "tsc && ncc build lib/action.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duart38/branch-convention-check.git"
+  },
+  "keywords": [
+    "github",
+    "actions",
+    "branch",
+    "naming",
+    "convention"
+  ],
+  "author": "duart38",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duart38/branch-convention-check/issues"
+  },
+  "homepage": "https://github.com/duart38/branch-convention-check",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.24.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "typescript": "^4.8.4"
+  }
+}
