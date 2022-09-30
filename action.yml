@@ -1,0 +1,20 @@
+name: Check branch convention usage
+description: 'Action that checks wether newly created branches follow a naming convention'
+author: 'duart38'
+
+branding:
+  icon: 'check-circle'
+  color: 'gray-dark'
+
+inputs:
+  standard_branch_check:
+    description: 'Regular expression which shall be used to check if a branch conforms to your standards'
+    required: true
+  ignore:
+    description: 'Label to expect on PRs of little relevance'
+    required: false
+    default: 'could have'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
