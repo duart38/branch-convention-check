@@ -25,7 +25,6 @@ import { context } from '@actions/github';
 
 try {
   const ref = context.ref;
-  console.log(context, ref)
   const branchName = ref.split("/")[ref.split("/").length - 1];
   console.log(`Running branch naming check for name ${branchName}`);
 
@@ -44,7 +43,7 @@ try {
 
 /**
  * Check wether the passed in string should be ignored as per the specifications in branching.yml
- * @param String bn 
+ * @param bn  
  * @returns Boolean
  */
 function checkIgnored(bn: string){
