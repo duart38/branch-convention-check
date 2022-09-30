@@ -1,0 +1,20 @@
+# Branch convention checking
+## Usage
+
+```yml
+name: Check branch convention usage
+on: push
+
+jobs:
+  branching:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Check the branch convention usage
+        uses: duart38/branch-convention-check@v1.0.0
+        with:
+          standard_branch_check: '(\b(?:fix|feat|ci|patch)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
+          ignore: 'main' # No-space comma separated branches to ignore. above regex will be checked BEFORE this runs
+
+```
