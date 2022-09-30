@@ -1,6 +1,6 @@
 {
   "name": "branch-convention-check",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Action that checks wether newly created branches follow a naming convention",
   "main": "index.js",
   "scripts": {
