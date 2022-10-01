@@ -1,0 +1,16 @@
+name: MoSCoW Prioritization
+
+on:
+  pull_request_target:
+    types: [ labeled, opened, unlabeled, reopened ]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: grevend/moscow-prioritization@v2.0.0
