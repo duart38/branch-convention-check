@@ -1,0 +1,15 @@
+name: (LOCAL) branch convention usage testing
+on: push
+
+jobs:
+  branching:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Check the branch convention usage
+        uses: ./
+        with:
+          standard_branch_check: '(\b(?:fix|feat|ci|patch)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
+          ignore_branch_check: '(\b(?:testing)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
+          ignore: 'main'
