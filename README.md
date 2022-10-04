@@ -15,6 +15,7 @@ jobs:
         uses: duart38/branch-convention-check@v1.0.1
         with:
           standard_branch_check: '(\b(?:fix|feat|ci|patch)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
+          ignore_branch_check: '(\b(?:testing)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
           ignore: 'main' # No-space comma separated branches to ignore. above regex will be checked BEFORE this runs
 
 ```
