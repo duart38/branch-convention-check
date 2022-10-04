@@ -10,10 +10,13 @@ inputs:
   standard_branch_check:
     description: 'Regular expression which shall be used to check if a branch conforms to your standards'
     required: true
+  ignore_branch_check:
+    description: 'Regular expression to test against and thus ignore a set of branch names'
+    required: true
   ignore:
-    description: 'Label to expect on PRs of little relevance'
+    description: 'Branch names to ignore. Separated via commas'
     required: false
-    default: 'could have'
+    default: 'main,develop'
 
 runs:
   using: 'node16'
