@@ -22,9 +22,18 @@
  */
 import { getInput, info, notice, setFailed } from '@actions/core';
 import { context } from '@actions/github';
+import exec from '@actions/exec';
 
 try {
-  console.log("##",getInput("branch"))
+  let myOutput = '';
+
+  await exec.exec('node', ['index.js', 'foo=bar'], {
+    listeners: {
+      stdout: (data) => {
+        myOutput += data.toString();
+      }
+    }
+  });
 
   const ref = context.ref;
   const branchName = ref.split("/")[ref.split("/").length - 1];
