@@ -21,21 +21,27 @@
  *   SOFTWARE.
  */
 import { getInput, info, notice, setFailed } from '@actions/core';
-import { context } from '@actions/github';
+import exec from '@actions/exec';
 
 try {
-  const ref = context.ref;
-  const branchName = ref.split("/")[ref.split("/").length - 1];
-  console.log(`Running branch naming check for name ${branchName}`);
+  let GITHUB_HEAD_REF = '';
+
+  await exec.exec('printenv',['GITHUB_HEAD_REF'], {
+    listeners: {
+      stdout: (data) => GITHUB_HEAD_REF = data.toString()
+    }
+  });
+
+  console.log(`Running branch naming check for name ${GITHUB_HEAD_REF}`);
 
   const standard_branch = new RegExp(getInput("standard_branch_check"));
   const ignore_branch = new RegExp(getInput("ignore_branch_check"));
-  if (ignore_branch.test(branchName)) {
-    notice(`Ignoring branch ${branchName} as per specification`);
-  } else if (standard_branch.test(branchName)) {
+  if (ignore_branch.test(GITHUB_HEAD_REF)) {
+    notice(`Ignoring branch ${GITHUB_HEAD_REF} as per specification`);
+  } else if (standard_branch.test(GITHUB_HEAD_REF)) {
     info("Branch naming check passed.");
   } else {
-    const caught = checkIgnored(branchName);
+    const caught = checkIgnored(GITHUB_HEAD_REF);
     // nothing was caught.. fail..
     if (caught === false) setFailed("Please make sure your branch complies with our naming conventions.");
   }

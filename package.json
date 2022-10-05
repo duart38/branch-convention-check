@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Action that checks wether newly created branches follow a naming convention",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint --fix .",
@@ -27,9 +28,11 @@
   "homepage": "https://github.com/duart38/branch-convention-check",
   "dependencies": {
     "@actions/core": "^1.10.0",
+    "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.0"
   },
   "devDependencies": {
+    "@types/node": "^18.8.2",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.24.0",
