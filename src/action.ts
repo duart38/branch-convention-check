@@ -27,7 +27,7 @@ import exec from '@actions/exec';
 try {
   let myOutput = '';
 
-  await exec.exec('node', ['index.js', 'foo=bar'], {
+  await exec.exec('echo',['${GITHUB_HEAD_REF})'], {
     listeners: {
       stdout: (data) => {
         myOutput += data.toString();
