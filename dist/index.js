@@ -10884,14 +10884,15 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 
 
 try {
-    let myOutput = '';
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_2__.exec('printenv', [], {
+    let GITHUB_HEAD_REF = '';
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_2__.exec('printenv', ['GITHUB_HEAD_REF'], {
         listeners: {
             stdout: (data) => {
-                myOutput += data.toString();
+                GITHUB_HEAD_REF = data.toString();
             }
         }
     });
+    console.log(GITHUB_HEAD_REF);
     const ref = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref;
     const branchName = ref.split("/")[ref.split("/").length - 1];
     console.log(`Running branch naming check for name ${branchName}`);

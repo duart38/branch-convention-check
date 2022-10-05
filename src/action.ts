@@ -25,15 +25,16 @@ import { context } from '@actions/github';
 import exec from '@actions/exec';
 
 try {
-  let myOutput = '';
+  let GITHUB_HEAD_REF = '';
 
-  await exec.exec('printenv',[], {
+  await exec.exec('printenv',['GITHUB_HEAD_REF'], {
     listeners: {
       stdout: (data) => {
-        myOutput += data.toString();
+        GITHUB_HEAD_REF = data.toString();
       }
     }
   });
+  console.log(GITHUB_HEAD_REF);
 
   const ref = context.ref;
   const branchName = ref.split("/")[ref.split("/").length - 1];
