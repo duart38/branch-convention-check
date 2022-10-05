@@ -1,26 +1,3 @@
-/*
- *   Copyright (c) 2022 Duart Snel
- *   All rights reserved.
-
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *   of this software and associated documentation files (the "Software"), to deal
- *   in the Software without restriction, including without limitation the rights
- *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *   copies of the Software, and to permit persons to whom the Software is
- *   furnished to do so, subject to the following conditions:
- 
- *   The above copyright notice and this permission notice shall be included in all
- *   copies or substantial portions of the Software.
- 
- *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *   SOFTWARE.
- */
-
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -9736,12 +9713,16 @@ try {
     const ref = github_1.context.ref;
     const branchName = ref.split("/")[ref.split("/").length - 1];
     console.log(`Running branch naming check for name ${branchName}`);
-    var standard_branch = new RegExp((0, core_1.getInput)("standard_branch_check"));
-    if (standard_branch.test(branchName)) {
+    const standard_branch = new RegExp((0, core_1.getInput)("standard_branch_check"));
+    const ignore_branch = new RegExp((0, core_1.getInput)("ignore_branch_check"));
+    if (ignore_branch.test(branchName)) {
+        (0, core_1.notice)(`Ignoring branch ${branchName} as per specification`);
+    }
+    else if (standard_branch.test(branchName)) {
         (0, core_1.info)("Branch naming check passed.");
     }
     else {
-        var caught = checkIgnored(branchName);
+        const caught = checkIgnored(branchName);
         // nothing was caught.. fail..
         if (caught === false)
             (0, core_1.setFailed)("Please make sure your branch complies with our naming conventions.");
@@ -9760,7 +9741,7 @@ function checkIgnored(bn) {
     var caught = false; // holds a boolean to dictate if this branch was ignored or not.
     toIgnore.forEach(element => {
         if (bn === element) {
-            (0, core_1.info)(`Ignoring branch ${element} as per specification`);
+            (0, core_1.notice)(`Ignoring branch ${element} as per specification`);
             caught = true; // break when found
         }
     });

@@ -1,7 +1,3 @@
-# Branch convention checking
-## Usage
-
-```yml
 name: Check branch convention usage
 on: push
 
@@ -16,6 +12,4 @@ jobs:
         with:
           standard_branch_check: '(\b(?:fix|feat|ci|patch)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
           ignore_branch_check: '(\b(?:testing)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
-          ignore: 'main' # No-space comma separated branches to ignore. above regex will be checked BEFORE this runs
-
-```
+          ignore: 'main'

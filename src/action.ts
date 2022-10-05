@@ -20,7 +20,7 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import { getInput, info, setFailed } from '@actions/core';
+import { getInput, info, notice, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 
 try {
@@ -29,12 +29,14 @@ try {
   const branchName = ref.split("/")[ref.split("/").length - 1];
   console.log(`Running branch naming check for name ${branchName}`);
 
-  var standard_branch = new RegExp(getInput("standard_branch_check"));
-
-  if (standard_branch.test(branchName)) {
+  const standard_branch = new RegExp(getInput("standard_branch_check"));
+  const ignore_branch = new RegExp(getInput("ignore_branch_check"));
+  if (ignore_branch.test(branchName)) {
+    notice(`Ignoring branch ${branchName} as per specification`);
+  } else if (standard_branch.test(branchName)) {
     info("Branch naming check passed.");
   } else {
-    var caught = checkIgnored(branchName);
+    const caught = checkIgnored(branchName);
     // nothing was caught.. fail..
     if (caught === false) setFailed("Please make sure your branch complies with our naming conventions.");
   }
@@ -47,14 +49,14 @@ try {
  * @param bn  
  * @returns Boolean
  */
-function checkIgnored(bn: string){
+function checkIgnored(bn: string) {
   var toIgnore = getInput("ignore").split(",");
-    var caught = false; // holds a boolean to dictate if this branch was ignored or not.
-    toIgnore.forEach(element => {
-      if (bn === element) {
-        info(`Ignoring branch ${element} as per specification`);
-        caught = true; // break when found
-      }
-    });
-    return caught;
+  var caught = false; // holds a boolean to dictate if this branch was ignored or not.
+  toIgnore.forEach(element => {
+    if (bn === element) {
+      notice(`Ignoring branch ${element} as per specification`);
+      caught = true; // break when found
+    }
+  });
+  return caught;
 }
