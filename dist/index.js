@@ -10885,7 +10885,7 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 
 try {
     let myOutput = '';
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_2__.exec('echo', ['${GITHUB_HEAD_REF})'], {
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_2__.exec('echo', ['$GITHUB_HEAD_REF'], {
         listeners: {
             stdout: (data) => {
                 myOutput += data.toString();
