@@ -20,7 +20,7 @@ inputs:
   branch:
     description: 'The branch name to check against'
     required: false
-    default: $GITHUB_HEAD_REF
+    default: ${GITHUB_HEAD_REF}
 
 runs:
   using: 'node16'
