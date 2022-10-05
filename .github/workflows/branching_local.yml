@@ -1,7 +1,7 @@
 name: (LOCAL) branch convention usage testing
 on: 
   pull_request:
-    types: [opened, assigned]
+    types: [opened, assigned, labeled, edited]
 
 jobs:
   branching:
