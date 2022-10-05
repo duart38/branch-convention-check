@@ -3,7 +3,9 @@
 
 ```yml
 name: Check branch convention usage
-on: push
+on: 
+  pull_request:
+    types: [opened]
 
 jobs:
   branching:
@@ -12,7 +14,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Check the branch convention usage
-        uses: duart38/branch-convention-check@v1.0.1
+        uses: duart38/branch-convention-check@v2.1.0
         with:
           standard_branch_check: '(\b(?:fix|feat|ci|patch)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
           ignore_branch_check: '(\b(?:testing)\b(-([0-9])+|)\b(?:-[a-z]{3,})+\b)'
