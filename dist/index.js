@@ -9709,7 +9709,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(2186);
 const github_1 = __nccwpck_require__(5438);
 try {
-    console.log((0, core_1.getInput)("GITHUB_HEAD_REF"));
+    console.log("##", (0, core_1.getInput)("branch"));
     const ref = github_1.context.ref;
     const branchName = ref.split("/")[ref.split("/").length - 1];
     console.log(`Running branch naming check for name ${branchName}`);
