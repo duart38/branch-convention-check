@@ -24,6 +24,7 @@ import { getInput, info, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 
 try {
+  console.log(getInput("GITHUB_HEAD_REF"))
   const ref = context.ref;
   const branchName = ref.split("/")[ref.split("/").length - 1];
   console.log(`Running branch naming check for name ${branchName}`);
